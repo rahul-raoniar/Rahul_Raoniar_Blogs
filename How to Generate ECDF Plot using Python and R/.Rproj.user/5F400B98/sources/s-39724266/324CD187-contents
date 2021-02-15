@@ -1,0 +1,96 @@
+# Import relevant libraries
+
+library(ggplot2)
+library(readxl)
+library(dplyr)
+
+
+fob_error_data <- read_excel("fob_train_valid_test.xlsx")
+
+
+## Data conversion
+
+glimpse(fob_error_data)
+
+fob_error_data$NEURONS <- as.factor(fob_error_data$NEURONS)
+fob_error_data$BATCH_SIZE <- as.factor(fob_error_data$BATCH_SIZE)
+
+
+
+library(tidyverse)
+
+
+##### MAE Plot
+
+MAE_data_long <- fob_error_data %>%
+  select(NEURONS, BATCH_SIZE, Train_MAE, Val_MAE) %>% 
+  gather(Error_type, Error_values, Train_MAE:Val_MAE)
+
+
+
+## Plot
+
+ggplot(data = MAE_data_long, mapping = aes(x = NEURONS, y = Error_values, group = Error_type)) +
+  geom_line(aes(color = Error_type), size = 1.1) +
+  facet_grid(BATCH_SIZE~.)+
+  theme_classic()+
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=20,face="bold"), legend.text=element_text(size=22),
+        legend.title = element_text(face = "bold", size = 26), legend.position="top",
+        panel.grid = element_blank(),
+        axis.line = element_line(colour="black", size=1, lineend="square"),
+        strip.text.y = element_text(size = 12, colour = "gray30")) +
+  xlab("No of Neurons")+
+  ylab("Final Mean Absolute Error")
+
+
+##### MSE Plot
+
+MSE_data_long <- fob_error_data %>%
+  select(NEURONS, BATCH_SIZE, Train_MSE, Val_MSE) %>% 
+  gather(Error_type, Error_values, Train_MSE:Val_MSE)
+
+
+## Plot
+
+ggplot(data = MSE_data_long, mapping = aes(x = NEURONS, y = Error_values, group = Error_type)) +
+  geom_line(aes(color = Error_type), size = 1) +
+  facet_grid(BATCH_SIZE~.)+
+  theme_classic()+
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=20,face="bold"), legend.text=element_text(size=22),
+        legend.title = element_text(face = "bold", size = 26), legend.position="top",
+        panel.grid = element_blank(),
+        axis.line = element_line(colour="black", size=1, lineend="square"),
+        strip.text.y = element_text(size = 12, colour = "gray30")) +
+  xlab("No of Neurons")+
+  ylab("Final Mean Squared Error")
+
+
+
+##### MAPE Plot
+
+MAPE_data_long <- fob_error_data %>%
+  select(NEURONS, BATCH_SIZE, Train_MAPE, Val_MAPE) %>% 
+  gather(Error_type, Error_values, Train_MAPE:Val_MAPE)
+
+
+## Plot
+
+ggplot(data = MAPE_data_long, mapping = aes(x = NEURONS, y = Error_values, group = Error_type)) +
+  geom_line(aes(color = Error_type), size = 1) +
+  facet_grid(BATCH_SIZE~.)+
+  theme_classic()+
+  theme(axis.text=element_text(size=14),
+        axis.title=element_text(size=20,face="bold"), legend.text=element_text(size=22),
+        legend.title = element_text(face = "bold", size = 26), legend.position="top",
+        panel.grid = element_blank(),
+        axis.line = element_line(colour="black", size=1, lineend="square"),
+        strip.text.y = element_text(size = 12, colour = "gray30")) +
+  xlab("No of Neurons")+
+  ylab("Final Mean Absolute Percentage Error")
+
+
+sum(is.null(fob_error_data$Val_MSE))
+
+

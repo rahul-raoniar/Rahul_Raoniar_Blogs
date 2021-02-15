@@ -1,0 +1,453 @@
+
+
+#########################################
+## Load libraries
+
+library(tidyverse)
+library(readxl)
+
+
+
+########################################
+# Load dataset
+
+data <- read_excel("revised_dataset.xlsx", skip = 1)
+
+
+dataset <- data
+
+
+#####################
+# Location Rename
+
+dataset <- dataset %>% 
+    rename(location = col1)
+
+
+
+######################
+# Gender
+
+
+dataset <- dataset %>% 
+    rename(gender = col10)
+
+dataset$gender <- as.factor(dataset$gender)
+
+dataset <- dataset %>% 
+    mutate(gender = fct_recode(gender,
+                               "Male" = "0",
+                               "Female" = "1"))
+
+
+gender_location_specific <- dataset %>% 
+    group_by(location, gender) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+gender_location_specific
+
+
+overall_gender <- dataset %>% 
+    group_by(gender) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_gender
+
+
+
+# Age coding
+
+dataset <- dataset %>% 
+    rename(age = col11)
+
+dataset$age <- as.factor(dataset$age)
+
+dataset <- dataset %>% 
+    mutate(age = fct_recode(age,
+                            "<18" = "0",
+                            "18-29" = "1",
+                            "30-45" = "2",
+                            "46-60" = "3",
+                            ">60" = "4"))
+
+
+age_location_specific <- dataset %>% 
+    group_by(location, age) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+age_location_specific
+
+
+overall_age <- dataset %>% 
+    group_by(age) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_age
+
+
+
+########################
+# Signal on arrival
+
+dataset <- dataset %>% 
+    rename(arr_sig = col15)
+
+dataset$arr_sig <- as.factor(dataset$arr_sig)
+
+dataset <- dataset %>% 
+    mutate(arr_sig = fct_recode(arr_sig,
+                                    "green" = "0",
+                                    "red" = "1"))
+
+arr_sig_location_specific <- dataset %>% 
+    group_by(location, arr_sig) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+arr_sig_location_specific
+
+
+arr_sig_overall <- dataset %>% 
+    group_by(arr_sig) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+arr_sig_overall
+
+
+########################
+# Signal on departure
+
+dataset <- dataset %>% 
+    rename(dep_sig = col26)
+
+dataset$dep_sig <- as.factor(dataset$dep_sig)
+
+dataset <- dataset %>% 
+    mutate(dep_sig = fct_recode(dep_sig,
+                                "green" = "0",
+                                "red" = "1"))
+
+dataset %>% 
+    group_by(location, dep_sig) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+
+dataset %>% 
+    group_by(dep_sig) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+
+#######################
+# Group size
+
+dataset <- dataset %>% 
+    rename(group_size = col34)
+
+dataset$group_size <- as.factor(dataset$group_size)
+
+dataset <- dataset %>% 
+    mutate(group_size = fct_recode(group_size,
+                                   "Single" = "1",
+                                   "Two" = "2",
+                                   "Three" = "3",
+                                   "Four" = "4",
+                                   "Five_or_more" = "5"))
+
+dataset$group_size <- relevel(dataset$group_size, ref = "Single")
+
+dataset <- dataset %>%
+    mutate(group_size = fct_collapse(group_size,
+                                     "Three_or_More" = c("Three", "Four", "Five_or_more")))
+
+levels(dataset$group_size)
+
+
+dataset %>% 
+    group_by(location, group_size) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+
+dataset %>% 
+    group_by(group_size) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+
+
+#######################
+# started marked
+
+
+dataset <- dataset %>% 
+    rename(start_marked = col22)
+
+dataset$start_marked <- as.factor(dataset$start_marked)
+
+dataset <- dataset %>% 
+    mutate(start_marked = fct_recode(start_marked,
+                            "No" = "0",
+                            "Yes" = "1"))
+
+
+start_marked_location <- dataset %>% 
+    group_by(location, start_marked) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+start_marked_location
+
+
+overall_start_marked <- dataset %>% 
+    group_by(start_marked) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_start_marked
+
+
+#######################
+# completed marked
+
+
+dataset <- dataset %>% 
+    rename(completed_marked = col91)
+
+dataset$completed_marked <- as.factor(dataset$completed_marked)
+
+dataset <- dataset %>% 
+    mutate(completed_marked = fct_recode(completed_marked,
+                                     "No" = "0",
+                                     "Yes" = "1"))
+
+
+completed_marked_location <- dataset %>% 
+    group_by(location, completed_marked) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+completed_marked_location
+
+
+overall_completed_marked <- dataset %>% 
+    group_by(completed_marked) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_completed_marked
+
+
+
+#######################
+# luggage
+
+
+dataset <- dataset %>% 
+    rename(carrying = col17)
+
+dataset$carrying <- as.factor(dataset$carrying)
+
+dataset <- dataset %>% 
+    mutate(carrying = fct_recode(carrying,
+                                         "No" = "0",
+                                         "Yes" = "1"))
+
+
+carrying_location <- dataset %>% 
+    group_by(location, carrying) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+carrying_location
+
+
+overall_carrying <- dataset %>% 
+    group_by(carrying) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_carrying
+
+
+
+#######################
+# bef look
+
+
+dataset <- dataset %>% 
+    rename(bef_look = col21)
+
+dataset$bef_look <- as.factor(dataset$bef_look)
+
+dataset <- dataset %>% 
+    mutate(bef_look = fct_recode(bef_look,
+                                 "No" = "0",
+                                 "Yes" = "1"))
+
+
+bef_look_location <- dataset %>% 
+    group_by(location, bef_look) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+bef_look_location
+
+
+overall_bef_look <- dataset %>% 
+    group_by(bef_look) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_bef_look
+
+
+
+#####################################
+
+
+data1 <- read_excel("revised_dataset_sm.xlsx", skip = 1)
+
+
+dataset1 <- data1
+
+
+
+
+######################################
+# Direction
+
+dataset1 <- dataset1 %>% 
+    rename(direction = col108)
+
+sm1 <- dataset1[dataset1$direction != "NA", ]
+
+sm1$direction
+
+
+
+sm1$direction <- as.factor(sm1$direction)
+
+sm1 <- sm1 %>% 
+    mutate(direction = fct_recode(direction,
+                                 "straight" = "0",
+                                 "left" = "1",
+                                 "right" = "2"))
+
+sm1 <- sm1 %>% 
+    rename(location = col1)
+
+
+
+direction_location <- sm1 %>% 
+    group_by(location, direction) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+direction_location
+
+
+overall_direction <- sm1 %>% 
+    group_by(direction) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_direction
+
+
+
+###################################
+## Vehicle type
+sm1 <- sm1 %>% 
+    rename(veh_type = col109)
+
+
+
+sm1$veh_type <- as.factor(sm1$veh_type)
+
+sm1 <- sm1[sm1$veh_type != "NA", ]
+
+
+
+sm1 <- sm1 %>% 
+    mutate(veh_type = fct_recode(veh_type,
+                                  "Tw" = "0",
+                                  "Car" = "1",
+                                  "Lcv" = "2",
+                                 "Bus" = "3"))
+
+veh_type_location <- sm1 %>% 
+    group_by(location, veh_type) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+veh_type_location
+
+
+overall_veh_type <- sm1 %>% 
+    group_by(veh_type) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+overall_veh_type
+
+
+
+##############################
+## Location wise sample
+
+loc_sample <- dataset %>% 
+    group_by(location) %>% 
+    summarise(count = n()) %>% 
+    mutate(proportion = round(count/sum(count)*100, digits = 1))
+
+loc_sample
+
+
+
+
+
+#############################
+## Crossing speed
+
+dataset <- dataset %>% 
+    rename(crossing_speed = col104)
+
+
+
+dataset %>%
+    summarise(Mean = mean(crossing_speed),SD = sd(crossing_speed))
+
+
+dataset %>%
+    group_by(gender) %>% 
+    summarise(Mean = mean(crossing_speed),SD = sd(crossing_speed))
+
+
+
+
+###################################
+## Safety Margin
+
+dataset <- dataset %>% 
+    rename(safety_margin = col107)
+
+dataset_sm <- dataset[dataset$safety_margin != "NaN", ]
+
+dataset_sm$safety_margin <- as.numeric(dataset_sm$safety_margin)
+
+dataset_sm %>%
+    summarise(Mean = mean(safety_margin), SD = sd(safety_margin))
+
+
+dataset_sm %>%
+    group_by(gender) %>% 
+    summarise(Mean = mean(safety_margin),SD = sd(safety_margin))
+
+
