@@ -5,11 +5,11 @@
 
 # load Libraries
 
-library(mlbench)
-library(rpart)
-library(rpart.plot)
-library(caret)
-library(Metrics)
+library(mlbench)    #diabetes dataset
+library(rpart)      # Decision tree training
+library(rpart.plot) #tree plotting
+library(caret)      #Confusion Matrix
+library(Metrics)    #Accuracy metric
 
 # load the diabetes dataset
 data(PimaIndiansDiabetes2)
@@ -19,13 +19,13 @@ data(PimaIndiansDiabetes2)
 ##########################
 
 # pregnant:	 Number of times pregnant
-# glucose:	 Plasma glucose concentration (glucose tolerance test)
+#  glucose:	 Plasma glucose concentration (glucose tolerance test)
 # pressure:	 Diastolic blood pressure (mm Hg)
-# triceps:	 Triceps skin fold thickness (mm)
-# insulin:	 2-Hour serum insulin (mu U/ml)
-# mass:	 Body mass index (weight in kg/(height in m)\^2)
+#  triceps:	 Triceps skin fold thickness (mm)
+#  insulin:	 2-Hour serum insulin (mu U/ml)
+#     mass:	 Body mass index (weight in kg/(height in m)\^2)
 # pedigree:	 Diabetes pedigree function
-# age:	 Age (years)
+#      age:  Age (years)
 # diabetes:	 Class variable (test for diabetes)
 
 # Save data to Diabetes
@@ -211,8 +211,8 @@ for (i in 1:num_models) {
 }
 
 # Let's check model 50
-diabetes_models[[18]]
-rpart.plot(x = diabetes_models[[18]], yesno = 2, type = 0, extra = 0)
+diabetes_models[[50]]
+rpart.plot(x = diabetes_models[[50]], yesno = 2, type = 0, extra = 0)
 
 
 
