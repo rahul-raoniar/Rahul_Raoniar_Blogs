@@ -3,17 +3,18 @@
 # Created by: Rahul-Raoniar
 # Created on: 27-04-2021
 library(mlbench)     # for PimaIndiansDiabetes2 dataset
-library(tidymodels)
+library(tidymodels)  # for fitting model
 
 # load the diabetes dataset
 data(PimaIndiansDiabetes2)
 head(PimaIndiansDiabetes2)
 
-
+# Removing NA values
 Diabetes <- na.omit(PimaIndiansDiabetes2)
 
 glimpse(Diabetes)
 
+# Setting reference level
 levels(Diabetes$diabetes)
 
 Diabetes$diabetes <- relevel(Diabetes$diabetes, ref = "pos")
@@ -26,11 +27,11 @@ diabetes_split <- initial_split(Diabetes,
                                prop = 0.75,
                                strata = diabetes)
 
-# Create training split
+# Create train data
 diabetes_train <- diabetes_split %>%
   training()
 
-# Create the test data
+# Create test data
 diabetes_test <- diabetes_split %>%
   testing()
 
@@ -51,6 +52,7 @@ fitted_logistic_model <- logistic_reg() %>%
   fit(diabetes~.,
       data = diabetes_train)
 
+# Model summary
 tidy(fitted_logistic_model)
 
 tidy(fitted_logistic_model, exponentiate = TRUE)
@@ -66,7 +68,7 @@ pred_class <- predict(fitted_logistic_model,
 
 pred_class[1:5,]
 
-# Prediction Probabilities
+# Class Probabilities
 pred_proba <- predict(fitted_logistic_model,
                       new_data = diabetes_test,
                       type = "prob")
@@ -81,7 +83,7 @@ diabetes_results <- diabetes_test %>%
 
 diabetes_results[1:5, ]
 
-# Model evaluation
+# Model evaluation metrics
 
 # Confusuin Matrix
 conf_mat(diabetes_results, truth = diabetes,
@@ -111,7 +113,7 @@ kap(diabetes_results, truth = diabetes,
 mcc(diabetes_results, truth = diabetes,
     estimate = .pred_class)
 
-## Custom matrics
+## Custom metrics
 custom_metrics <- metric_set(accuracy, sens, spec, precision, recall, f_meas, kap, mcc)
 
 custom_metrics(diabetes_results,
@@ -126,5 +128,9 @@ diabetes_results %>%
   roc_curve(truth = diabetes, .pred_pos) %>%
   autoplot()
 
+# Estimating different evaluation metrics using caret package
 library(caret)
-confusionMatrix(diabetes_results$.pred_class, diabetes_results$diabetes, positive="pos")
+
+confusionMatrix(diabetes_results$.pred_class,
+                diabetes_results$diabetes,
+                positive="pos")
