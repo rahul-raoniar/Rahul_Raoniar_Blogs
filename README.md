@@ -1,6 +1,6 @@
-# Welcome to Rahul_Raoniar_Blogs ! 📑📚
+# Welcome to "The Researchers' Guide" Medium blogs ! 📑📚
 
-
+Here, I share my everyday data science learning through open blogs.
 
 
 ### Currently working on a visualisation blog series
