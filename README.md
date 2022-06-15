@@ -6,7 +6,7 @@ Here, you will get all the codes and datasets of my data science blogs.
 ### Currently working on a visualisation blog series
 
 * **`Importing libraries`**
-* Getting familiar with the **matplotlib** `attributes` and `methods`
+* Getting familiar with the **matplotlib's** `attributes` and `methods`
 * **`Line plot`**
     * Basics of plotting using a `lineplot`
     * Line plot using `real-world dataset`
