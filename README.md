@@ -13,7 +13,7 @@ Here, you will get all the codes and datasets of my data science blogs.
     * Line `plot customization`
     * Plotting `time series data` using `twin axis line plot`
 
-Blog: [Introduction to Line Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 1)](https://medium.com/the-researchers-guide/introduction-to-line-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-1-1e69cd0b71f1)
+**Blog**: [Introduction to Line Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 1)](https://medium.com/the-researchers-guide/introduction-to-line-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-1-1e69cd0b71f1)
 
 * **`Bar plot`**
     * Basics of barplot
