@@ -28,7 +28,6 @@ Here, you will get all the codes and datasets of my data science blogs ["The Res
     * Stacked barplot
         * Stacked barplot [`matplotlib style`]
         * Stacked barplot [`pandas and matplotlib style`]
-        * Stacked barplot `with pandas DataFrame` [`seaborn style`]
         
         **Blog**: [Introduction to Stacked Bar Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 2.2)](https://medium.com/the-researchers-guide/introduction-to-stacked-bar-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-2-2-716960c3006b)
 
