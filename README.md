@@ -31,7 +31,7 @@ Here, you will get all the codes and datasets of my data science blogs.
         **Blog**: [Introduction to Stacked Bar Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 2.2)](https://medium.com/the-researchers-guide/introduction-to-dodged-bar-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-2-1-49e2fbc9ac39)
 
     * Generating a barplot that represent the `mean tip for each day by sex` category
-        * Plot using DataFrame [matplotlib style]
+        * Plot using DataFrame [matplotlib style] 
         * Plot using DataFrame [seaborn style]
 * **`Pie chart`**
     * `Full` pie chart
