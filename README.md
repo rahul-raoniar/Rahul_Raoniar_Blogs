@@ -3,7 +3,7 @@
 Here, you will get all the codes and datasets of my data science blogs ["The Researchers' Guide"](https://medium.com/the-researchers-guide) and ["onezero.blog"](https://onezero.blog).
 
 
-### Currently working on a visualisation blog series
+### Currently working on a data visualisation blog series, where we will learn how to built plots in python from scratch using matplotlib, pandas and seaborn.
 
 * **`Importing libraries`**
 * Getting familiar with the **matplotlib's** `attributes` and `methods`
