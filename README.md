@@ -1,4 +1,4 @@
-# Welcome to "The Researchers' Guide" Medium blogs ! 📑📚
+# Welcome to ["The Researchers' Guide"](https://medium.com/the-researchers-guide) Medium blog! 📑📚
 
 Here, you will get all the codes and datasets of my data science blogs ["The Researchers' Guide"](https://medium.com/the-researchers-guide).
 
