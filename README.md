@@ -21,11 +21,16 @@ Here, you will get all the codes and datasets of my data science blogs.
         * Dodged barplot [`matplotlib style`]
         * Dodged barplot [`pandas and matplotlib style`]
         * Dodged barplot `with pandas DataFrame` [`seaborn style`]
-    **Blog**: [Introduction to Dodged Bar Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 2.1)](https://medium.com/the-researchers-guide/introduction-to-dodged-bar-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-2-1-49e2fbc9ac39)
+    
+**Blog**: [Introduction to Dodged Bar Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 2.1)](https://medium.com/the-researchers-guide/introduction-to-dodged-bar-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-2-1-49e2fbc9ac39)
+    
     * Stacked barplot
         * Stacked barplot [`matplotlib style`]
         * Stacked barplot [`pandas and matplotlib style`]
         * Stacked barplot `with pandas DataFrame` [`seaborn style`]
+        
+**Blog**: [Introduction to Stacked Bar Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 2.2)](https://medium.com/the-researchers-guide/introduction-to-dodged-bar-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-2-1-49e2fbc9ac39)
+
     * Generating a barplot that represent the `mean tip for each day by sex` category
         * Plot using DataFrame [matplotlib style]
         * Plot using DataFrame [seaborn style]
