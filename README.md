@@ -30,7 +30,7 @@ Here, you will get all the codes and datasets of my data science blogs.
         * Stacked barplot [`pandas and matplotlib style`]
         * Stacked barplot `with pandas DataFrame` [`seaborn style`]
         
-        **Blog**: [Introduction to Stacked Bar Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 2.2)](https://medium.com/the-researchers-guide/introduction-to-dodged-bar-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-2-1-49e2fbc9ac39)
+        **Blog**: [Introduction to Stacked Bar Plot — Matplotlib, Pandas and Seaborn Visualization Guide (Part 2.2)](https://medium.com/the-researchers-guide/introduction-to-stacked-bar-plot-matplotlib-pandas-and-seaborn-visualization-guide-part-2-2-716960c3006b)
 
     * Generating a barplot that represent the `mean tip for each day by sex` category
         * Plot using DataFrame [matplotlib style] 
