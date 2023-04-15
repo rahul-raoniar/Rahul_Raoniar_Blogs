@@ -2,9 +2,7 @@
 # Load libraries
 ############################################
 library(MASS)
-library(foreign)
 library(tidyverse)
-library(margins)
 
 ############################################
 # Data Preparation
